@@ -1,0 +1,8 @@
+<p>user works!</p>
+<hr>
+<label for="username">User Name: </label>
+<input type="text" [(ngModel)] = "username">
+<br>
+{{username}}
+<br>
+<button class="btn btn-primary" (click) = "clearText()" [disabled]="username === ''">Clear Text</button>
