@@ -3,12 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styles: [` .morethan5 {
+    color: 'white'
+  }`]
 })
 export class UserComponent implements OnInit {
 
   username: string = '';
   isTextEmpty: boolean = true;
+  showText: boolean = true;
+  indexes: number[] = [];
+  index: number = 0;
 
   constructor() { }
 
@@ -27,6 +32,16 @@ export class UserComponent implements OnInit {
 
   clearText(){
     this.username = '';
+  }
+
+  toggleText(){
+    this.index = this.index+1;
+    console.log(this.index);
+    this.indexes.push(this.index);
+    console.log(" line 39: " + this.index);
+    this.showText = !this.showText;
+
+
   }
 
 }
