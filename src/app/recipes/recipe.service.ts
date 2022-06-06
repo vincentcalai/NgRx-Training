@@ -7,8 +7,6 @@ import { Recipe } from "./recipe.model";
 @Injectable()
 export class RecipeService{
 
-    recipeSelected = new EventEmitter<Recipe>();
-
     recipes:Recipe[] = [
         new Recipe('Hainanese Curry Rice', 'A Chinese favourite mixed rice dish', 
         'https://burpple-1.imgix.net/foods/1b88053d285d8c469e41276398_original.?w=645&dpr=1&fit=crop&q=80&auto=format'
@@ -31,8 +29,12 @@ export class RecipeService{
 
     constructor(private shoppingListService: ShoppingListService){}
     
-    getRecipe() {
+    getRecipes() {
         return this.recipes.slice();
+    }
+
+    getRecipe(index: number){
+        return this.recipes[index];
     }
 
     addIngredients(ingredients: Ingredient[]) {
