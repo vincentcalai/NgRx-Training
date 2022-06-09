@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +21,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeService } from './recipes/recipe.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { RecipeService } from './recipes/recipe.service';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
     AppRoutingModule
