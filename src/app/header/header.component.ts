@@ -5,14 +5,12 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
-import { RecipeService } from '../recipes/recipe.service';
-import { DataStorageService } from '../shared/data-storage.service';
+import * as AuthActions from '../auth/store/auth.actions';
 import * as fromApp from '../store/app.reducer';
+import * as RecipeActions from '../recipes/store/recipe.action';
 
 @Component({
   selector: 'app-header',
@@ -23,11 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuthenticated = false;
 
-  constructor(
-    private dataStorageService: DataStorageService,
-    private authService: AuthService,
-    private store: Store<fromApp.AppState>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.userSub = this.store
@@ -41,15 +35,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   storeRecipe() {
-    this.dataStorageService.storeRecipe();
+    //this.dataStorageService.storeRecipe();
+    this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 
   fetchRecipe() {
-    this.dataStorageService.fetchRecipe().subscribe();
+    //this.dataStorageService.fetchRecipe().subscribe();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 
   logout() {
-    this.authService.logout();
+    //this.authService.logout();
+    this.store.dispatch(new AuthActions.Logout());
   }
 
   ngOnDestroy() {
